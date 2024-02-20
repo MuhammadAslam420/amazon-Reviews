@@ -16,9 +16,10 @@ class AdminAuthentication
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->utype === 'admin') {
+        if(Auth::check() && Auth::user()->utype === 'admin'){
             return $next($request);
-        } else {
+        }else{
+            session()->flush();
             return redirect()->route('login');
         }
     }

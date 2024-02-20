@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Ai;
 
 use App\Models\AiAssistant;
+use App\Models\AiSetting;
 use App\Models\Category;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -17,26 +18,27 @@ class EditAiAssistantComponent extends Component
     use WithFileUploads;
     #[Layout('layouts.app')]
     public $name;
-    public $slug;
-    public $title;
+   
     public $prompt;
     public $status;
     public $category_id;
-    public $logo;
-    public $new_logo;
+    
     public $aiId;
+    public $ai_id;
+   
 
     public function mount($id){
         $this->aiId = $id;
         try{
             $ai = AiAssistant::findorFail($this->aiId);
             $this->name = $ai->name;
-            $this->slug = $ai->slug;
-            $this->title = $ai->title;
+            
             $this->category_id = $ai->category_id;
             $this->status = $ai->status;
             $this->prompt = $ai->prompt;
-            $this->logo = $ai->logo;
+            
+            $this->ai_id = $ai->ai_setting_id;
+            
         }catch(\Exception $e){
             $errorMessage = $e->getMessage();
         return view('livewire.admin.error-component',get_defined_vars());
@@ -49,34 +51,24 @@ class EditAiAssistantComponent extends Component
     public function updateAi(){
         $this->validate([
             'name'=>'required|string|min:3',
-            'slug'=>'required|string|unique:ai_assistants,slug,'.$this->aiId,
+            
             'status'=>'required|in:active,inactive',
-            'new_logo'=>'nullable|image|mimes:svg,png,jpg,jpeg,giff',
-            'title'=>'nullable|string',
+            
             'prompt'=>'required|string|max:200',
-            'category_id'=>'required|exists:categories,id'
+            'category_id'=>'required|exists:categories,id',
+            'ai_id'=>'required|exists:ai_settings,id',
+            
         ]);
         try{
             $ai = AiAssistant::findorFail($this->aiId);
             $ai->name = $this->name;
-            $ai->slug = $this->slug;
-            $ai->title = $this->title;
+       
             $ai->category_id = $this->category_id;
             $ai->status = $this->status;
             $ai->prompt = $this->prompt;
-            if($this->new_logo){
-                $image = Carbon::now()->timestamp.'.'.$this->new_logo->extension();
-                $this->new_logo->storeAs('assets/images/ai',$image);
-                $ai->logo = $image;
-                // if ($this->logo) {
-                //     $filePath = public_path('assets/images/ai/' . $this->logo);
-                
-                //     if (file_exists($filePath)) {
-                //         unlink($filePath);
-                //     }
-                // }
-                
-            }
+            $ai->ai_setting_id = $this->ai_id;
+           
+          
             $ai->save();
             $this->alert('success','Ai updated successfully');
            // return $this->route('admin.ai_assistant',navigate: true);
@@ -94,6 +86,7 @@ class EditAiAssistantComponent extends Component
     {
        try{
         $categories = Category::where('status','active')->get();
+        $ais = AiSetting::where('status','active')->get();
         return view('livewire.admin.ai.edit-ai-assistant-component',get_defined_vars());
        }catch(\Exception $e){
         $errorMessage = $e->getMessage();

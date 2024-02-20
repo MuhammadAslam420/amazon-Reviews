@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('ai_assistants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id')->constrained('categories');
+            $table->unsignedBigInteger('ai_setting_id')->constrained('ai_settings')->nullable();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('logo')->default('artificial-intelligence.png');
-            $table->string('title')->nullable();
             $table->text('prompt')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();

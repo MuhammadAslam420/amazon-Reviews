@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'admin@example.com',
             'utype'=>'admin'
         ]);
         \App\Models\User::factory(10)->create();
         \App\Models\Category::factory(10)->create();
-        \App\Models\AiAssistant::factory(30)->create();
+        // \App\Models\AiAssistant::factory(30)->create();
 
        
     }

@@ -73,27 +73,33 @@ function QuillIsExists() {
 QuillIsExists();
 
 // Settings Tab
-const tabs = document.querySelectorAll(".tab");
-const tabContent = document.querySelectorAll(".tab-pane");
+function initializeTabs() {
+  const tabs = document.querySelectorAll(".tab");
+  const tabContent = document.querySelectorAll(".tab-pane");
 
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const target = tab.getAttribute("data-tab");
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.getAttribute("data-tab");
 
-    tabs.forEach((tab) => {
-      tab.classList.remove("active");
-    });
-    tab.classList.add("active");
+      tabs.forEach((tab) => {
+        tab.classList.remove("active");
+      });
+      tab.classList.add("active");
 
-    tabContent.forEach((content) => {
-      if (content.getAttribute("id") === target) {
-        content.classList.add("active");
-      } else {
-        content.classList.remove("active");
-      }
+      tabContent.forEach((content) => {
+        if (content.getAttribute("id") === target) {
+          content.classList.add("active");
+        } else {
+          content.classList.remove("active");
+        }
+      });
     });
   });
-});
+}
+
+// Call the function to initialize tabs
+initializeTabs();
+
 
 //Faq
 const accordionHeader = document.querySelectorAll(".accordion-header");
@@ -283,27 +289,5 @@ navSubmenu();
 
 
   // Check the initial theme preference and apply the appropriate class
-  if (localStorage.theme === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
 
-  // Toggle the theme when the button is clicked
-  var themeToggle = document.getElementById('theme-toggle');
-  themeToggle.addEventListener('click', function() {
-    // Check the current theme and toggle it
-    if (localStorage.theme === 'dark') {
-      localStorage.theme = 'light';
-    } else {
-      localStorage.theme = 'dark';
-    }
-
-    // Apply the new theme
-    if (localStorage.theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  });
 

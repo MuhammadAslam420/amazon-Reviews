@@ -15,7 +15,13 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+               
             },
+        },
+        plugins: {
+            boxShadow: ['hover'],
+            backgroundColor: ['hover'],
+            display: ["group-hover"],
         },
     },
 

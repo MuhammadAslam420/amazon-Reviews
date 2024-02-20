@@ -1,4 +1,5 @@
 <x-action-section>
+    @if(Auth::user()->utype == 'admin')
     <x-slot name="title">
         {{ __('Delete Account') }}
     </x-slot>
@@ -50,4 +51,5 @@
             </x-slot>
         </x-dialog-modal>
     </x-slot>
+    @endif
 </x-action-section>

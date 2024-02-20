@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Urbanist:wght@300;400;500;600;700&display=swap");
 
 html {
-  background: #ffffff;
+  background: #fafafa;
 }
 body {
   font-family: "Urbanist", sans-serif;
@@ -302,7 +302,7 @@ body.modal-open {
 /* Custom Quill Editor */
 
 .custom-quill .ql-toolbar.ql-snow {
-  background-color: #ffffff;
+  background-color: #fafafa;
   border: 1px solid #e2e8f0;
   color: white;
   padding: 16px 24px;
@@ -337,7 +337,7 @@ body.modal-open {
 
 .custom-quill-2 .ql-toolbar.ql-snow {
   padding: 16px 20px;
-  background: #ffffff;
+  background: #fafafa;
   border-radius: 0 0 8px 8px;
   border: 1px solid #e2e8f0;
 }
@@ -456,7 +456,7 @@ button.fc-button.fc-button-primary.fc-prev-button {
 }
 
 .fc .fc-daygrid .fc-day-today .fc-daygrid-day-frame {
-  border: 2px solid #b7ffd1 !important;
+  border: 2px solid #2F438D !important;
   background: none !important;
 }
 .fc .fc-day-today {
@@ -546,7 +546,7 @@ button.fc-button.fc-button-primary.fc-prev-button {
   .item-ico
   svg
   .path-2 {
-  fill: #b7ffd1;
+  fill: #2F438D;
 }
 .sidebar-wrapper .sidebar-body .nav-wrapper ul li.item .sub-menu {
   display: none;
@@ -686,4 +686,7 @@ svg
 .dark .jvm-container{
   background-color: #23262B!important;
   border-color: #2A313C;
+}
+.page-header{
+  background: url('../images/bg.png') center/cover;
 }

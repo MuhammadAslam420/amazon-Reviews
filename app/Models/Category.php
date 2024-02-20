@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    public function ais(){
-        return $this->hasMany(AiAssistant::class,'category_id');
+    protected $fillable = [
+        'name',
+        'slug',
+        'status',
+        'logo',
+    ];
+    public function ais()
+    {
+        return $this->hasMany(AiAssistant::class, 'category_id');
     }
 }
